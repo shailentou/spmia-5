@@ -42,7 +42,7 @@ public class LicenseService {
 
 	private Organization retriveOrgInfo(String organizationId, String clientType) {
 		Organization org = null;
-
+ 
 		switch (clientTypes.valueOf(clientType)) {
 
 		case FEIGN:
