@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.client.OrganizationDiscoveryClient;
+import com.example.demo.client.OrganizationFeignClient;
+import com.example.demo.client.OrganizationRestTemplateClient;
 import com.example.demo.model.License;
 import com.example.demo.model.Organization;
 import com.example.demo.repositery.LicenseRepository;
@@ -20,6 +22,12 @@ public class LicenseService {
 	@Autowired
 	OrganizationDiscoveryClient organizationDiscoveryClient;
 
+	@Autowired
+    OrganizationRestTemplateClient organizationRestClient;
+	
+	@Autowired
+    OrganizationFeignClient organizationFeignClient;
+	
 	enum clientTypes {
 		FEIGN, REST, DISCOVERY
 	};
@@ -38,11 +46,13 @@ public class LicenseService {
 		switch (clientTypes.valueOf(clientType)) {
 
 		case FEIGN:
-			System.out.println("DFS");
+			
+			 System.out.println("I am using the feign client");
+			 org = organizationFeignClient.getOrganization(organizationId);
 			break;
-
 		case REST:
-			System.out.println("DFS");
+			  System.out.println("I am using the rest client");
+			  org = organizationRestClient.getOrganization(organizationId);
 			break;
 		case DISCOVERY:
 			System.out.println("DFS");
