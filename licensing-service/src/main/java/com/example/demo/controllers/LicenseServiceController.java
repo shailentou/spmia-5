@@ -36,17 +36,16 @@ public class LicenseServiceController {
 			//	.withProductName("Teleco");
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/{licenseId}", method = RequestMethod.GET)
 	public License getLicenses(@PathVariable("organizationId") String organizationId,
 			@PathVariable("licenseId") String licenseId) {
 		
 		
-		
-		licenseService.getLicense(organizationId, licenseId);
+		licenseService.getLicenseByOrg(organizationId, licenseId);
 		return new License().withLicenseId(licenseId).withLicenseType("Seat").withOrganizationId(organizationId)
 				.withProductName("Teleco");
-	}*/
+	}
 
 	@RequestMapping(value = "{licenseId}", method = RequestMethod.PUT)
 	public String updateLicenses(@RequestBody License license) {
